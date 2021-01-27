@@ -56,7 +56,7 @@ const calculate = () => {
             total = prevNum * newNumber;
             break;
         }
-        case '/': {
+        case '÷': {
             total = prevNum / newNumber;
             if (prevNum === 0 || newNumber === 0) {
                 warning.innerText = `Don't divide by zero!`;
@@ -79,7 +79,14 @@ equals.addEventListener('click', (event) => {
 
 
 // Delete function
-const deleteFn = () => {}
+undoBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    const sliceNumber = currentNumber.slice(0, -1);
+    console.log(sliceNumber);
+    currentNumber = sliceNumber;
+    viewer.innerText = sliceNumber;
+});
+
 
 
 // Clear all function
