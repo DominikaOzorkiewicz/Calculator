@@ -4,4 +4,52 @@
 
 body {
     margin: 0;
+    font-family: "Helvetica Neue", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background: rgb(2,0,36);
+}
+
+.calculator {
+    width: 300px;
+    border: 1px solid #503001;
+}
+
+.total {
+    font-size: 40px;
+    color: #e98022;
+    text-align: end;
+    padding: 5px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    overflow-wrap: anywhere;
+}
+
+button {
+    width: 65px;
+    height: 65px;
+    margin: 3px;
+    font-size: 20px;
+    color: #e98022;
+    background: #262939;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #202430;
+}
+
+button:focus {
+    outline: none;
+}
+
+.warning {
+    color: #ff8d00;
+    font-size: 20px;
 }
