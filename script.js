@@ -7,7 +7,7 @@ const equals = document.querySelector('.equals');       // Equals
 const clearBtn = document.querySelector('.clear');      // Clear button
 const undoBtn = document.querySelector('.undo');        // Clears the last digit
 const commaBtn = document.querySelector('.comma');    // Comma button
-const warning = document.querySelector('.warning');     // Message above calculator, if necessary
+const message = document.querySelector('.warning');     // Message above calculator, if necessary
 
 let prevNum = '';           // Previous number
 let newNumber= '';          // Last entered number
@@ -25,7 +25,7 @@ numberButtons.forEach((button) => {
             currentNumber += event.target.value;
             viewer.innerText = currentNumber;
         } else {
-            warning.innerText = 'Please make your number shorter';
+            message.innerText = 'Please make your number shorter';
         }
     });
 });
@@ -36,10 +36,20 @@ operatorButtons.forEach((operatorBtn) => {
    operatorBtn.addEventListener('click', (event) => {
        event.preventDefault();
        console.log(event.target.value);
-       currentOperator = event.target.value;
-       prevNum = Number(currentNumber);
-       currentNumber = '';
-       viewer.innerText = currentOperator;
+
+       if (prevNum.length === 0) {
+           currentOperator = event.target.value;
+           prevNum = Number(currentNumber);
+           currentNumber = '';
+           viewer.innerText = currentOperator;
+       } else {
+           newNumber = Number(currentNumber);
+           calculate();
+           currentNumber = '';
+           prevNum = total;
+           currentOperator = event.target.value;
+           viewer.innerText = currentOperator;
+       }
    })
 });
 
@@ -60,7 +70,7 @@ const calculate = () => {
         case '÷': {
             total = prevNum / newNumber;
             if (prevNum === 0 || newNumber === 0) {
-                warning.innerText = `Don't divide by zero!`;
+                message.innerText = `Don't divide by zero!`;
             }
             break;
         }
@@ -69,12 +79,18 @@ const calculate = () => {
     }
 }
 
-// Result
+// Equals function
 equals.addEventListener('click', (event) => {
     event.preventDefault();
+    //newNumber = Number(currentNumber);
+    //currentNumber = '';
+    //calculate();
+    //viewer.innerText = total;
+
     newNumber = Number(currentNumber);
-    currentNumber = '';
     calculate();
+    currentNumber = '';
+    prevNum = total;
     viewer.innerText = total;
 });
 
@@ -95,6 +111,7 @@ const clear = () => {
     newNumber = '';
     currentNumber = '';
     viewer.innerText = '0';
+    message.innerText = '';
 }
 clearBtn.addEventListener('click', (event) => {
     event.preventDefault();
