@@ -6,6 +6,7 @@ const operatorButtons = document.querySelectorAll('.operator');   // All operato
 const equals = document.querySelector('.equals');       // Equals
 const clearBtn = document.querySelector('.clear');      // Clear button
 const undoBtn = document.querySelector('.undo');        // Clears the last digit
+const commaBtn = document.querySelector('.comma');    // Comma button
 const warning = document.querySelector('.warning');     // Message above calculator, if necessary
 
 let prevNum = '';           // Previous number
@@ -88,7 +89,6 @@ undoBtn.addEventListener('click', (event) => {
 });
 
 
-
 // Clear all function
 const clear = () => {
     prevNum = '';
@@ -99,4 +99,15 @@ const clear = () => {
 clearBtn.addEventListener('click', (event) => {
     event.preventDefault();
     clear();
+});
+
+// Comma button function
+commaBtn.addEventListener('click', (event) => {
+   event.preventDefault();
+    if (currentNumber.length === 0) {
+        currentNumber += '0.'
+    } else {
+        currentNumber += '.';
+    }
+    viewer.innerText = currentNumber;
 });
