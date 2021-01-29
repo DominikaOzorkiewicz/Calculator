@@ -82,16 +82,11 @@ const calculate = () => {
 // Equals function
 equals.addEventListener('click', (event) => {
     event.preventDefault();
-    //newNumber = Number(currentNumber);
-    //currentNumber = '';
-    //calculate();
-    //viewer.innerText = total;
-
     newNumber = Number(currentNumber);
     calculate();
-    currentNumber = '';
-    prevNum = total;
-    viewer.innerText = total;
+    currentNumber = total;
+    prevNum = '';
+    viewer.innerText = currentNumber;
 });
 
 
@@ -99,7 +94,6 @@ equals.addEventListener('click', (event) => {
 undoBtn.addEventListener('click', (event) => {
     event.preventDefault();
     const sliceNumber = currentNumber.slice(0, -1);
-    console.log(sliceNumber);
     currentNumber = sliceNumber;
     viewer.innerText = sliceNumber;
 });

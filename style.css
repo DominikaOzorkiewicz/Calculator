@@ -49,6 +49,11 @@ button:focus {
     outline: none;
 }
 
+button.disabled:hover {
+    background: #262939;
+    cursor: unset;
+}
+
 .warning {
     color: #ff8d00;
     font-size: 20px;
